@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ListService from './ListService';
-import { ListContainer, AddItem, ItemList, ListItemStyle } from './styles';
+import { ListContainer, AddItem, ItemList, ListItemStyle, ShareButton } from './styles';
+import { AnimatePresence } from 'framer-motion';
 
 function ListView() {
   const [listItems, setListItems] = useState([]);
   const [newItemText, setNewItemText] = useState('');
-  const listName = 'sharedList';
+  const listName = 'toDoList';
 
   useEffect(() => {
     loadList();
@@ -43,8 +44,8 @@ function ListView() {
   };
 
   return (
-    <ListContainer>
-      <h2>Shared List</h2>
+    <ListContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <h2>Listy</h2>
 
       <AddItem>
         <input
@@ -57,21 +58,32 @@ function ListView() {
       </AddItem>
 
       <ItemList>
-        {listItems.map((item) => (
-          <ListItemStyle key={item.id}>
-            <input
-              type="checkbox"
-              checked={item.completed}
-              onChange={(e) => updateItem({ ...item, completed: e.target.checked })}
-            />
-            <span style={{ textDecoration: item.completed ? 'line-through' : 'none', color: item.completed ? '#888' : 'black' }}>
+        <AnimatePresence>
+          {listItems.map((item) => (
+            <ListItemStyle
+              key={item.id}
+              initial={{opacity: 0, y: -20}}
+              animate={{opacity: 1, y: 0}}
+              exit={{opacity: 0, y: -20}}
+              transition={{duration: 0.2}}
+            >
+              <input
+                type="checkbox"
+                checked={item.completed}
+                onChange={(e) => updateItem({...item, completed: e.target.checked})}
+              />
+              <span style={{
+                textDecoration: item.completed ? 'line-through' : 'none',
+                color: item.completed ? '#888' : 'black'
+              }}>
               {item.text}
             </span>
-            <button onClick={() => deleteItem(item.id)}>Delete</button>
-          </ListItemStyle>
-        ))}
+              <button onClick={() => deleteItem(item.id)}>Delete</button>
+            </ListItemStyle>
+          ))}
+        </AnimatePresence>
       </ItemList>
-      <button onClick={shareList}>Share List</button>
+      <ShareButton onClick={shareList}>Share List</ShareButton>
     </ListContainer>
   );
 }

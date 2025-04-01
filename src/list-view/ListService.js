@@ -1,7 +1,7 @@
 const lists = {
-  sharedList: [
-    { id: 1, text: 'Buy groceries', completed: false },
-    { id: 2, text: 'Finish project', completed: true },
+  toDoList: [
+    { id: 1, text: 'Buy Sunpocrisy ticket', completed: false },
+    { id: 2, text: 'Watch Mindhunter', completed: true },
   ],
 };
 
