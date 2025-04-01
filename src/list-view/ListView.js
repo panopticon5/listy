@@ -47,6 +47,8 @@ function ListView() {
     <ListContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <h2>Listy</h2>
 
+      <h4>{listName}</h4>
+
       <AddItem>
         <input
           type="text"
