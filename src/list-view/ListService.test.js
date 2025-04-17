@@ -3,14 +3,12 @@ import ListService from './ListService';
 describe('ListService', () => {
   const TEST_LIST = 'testList';
   
-  beforeEach(() => {
+  beforeEach(async () => {
     // Clear any existing items from the test list
-    ListService.getList(TEST_LIST)
-      .then(list => {
-        list.forEach(item => {
-          ListService.deleteItem(TEST_LIST, item.id);
-        });
-      });
+    const list = await ListService.getList(TEST_LIST);
+    for (const item of list) {
+      await ListService.deleteItem(TEST_LIST, item.id);
+    }
   });
 
   describe('getList', () => {
@@ -51,6 +49,7 @@ describe('ListService', () => {
     it('should not modify other items when updating', async () => {
       // Add two items
       await ListService.addItem(TEST_LIST, 'Item 1');
+      await new Promise(resolve => setTimeout(resolve, 10));
       const list = await ListService.addItem(TEST_LIST, 'Item 2');
       const originalSecondItem = list[1];
       
@@ -78,9 +77,11 @@ describe('ListService', () => {
     it('should only remove the specified item', async () => {
       // Add two items
       await ListService.addItem(TEST_LIST, 'Item 1');
+      // Add delay to ensure different IDs
+      await new Promise(resolve => setTimeout(resolve, 10));
       const list = await ListService.addItem(TEST_LIST, 'Item 2');
       const firstItemId = list[0].id;
-      
+
       // Delete the first item
       const result = await ListService.deleteItem(TEST_LIST, firstItemId);
       
