@@ -7,7 +7,7 @@ pipelines:
           name: 'Build and Test'
           script:
             - npm install
-            - npm start
+            - npm run build
             - npm test
 #      - step:
 #          name: 'Lint'
