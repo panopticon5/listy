@@ -1,6 +1,6 @@
 # Listy App
 
-This is a shared list application built with React, demonstrating CRUD operations, responsiveness, and Web API usage.
+This is a basic shared list application built with React, demonstrating CRUD operations, responsiveness, and Web API usage.
 
 ## Features
 
@@ -19,6 +19,4 @@ This is a shared list application built with React, demonstrating CRUD operation
 ## Author
 
 Marco Bellio
-
-## Contact
 

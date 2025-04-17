@@ -6,7 +6,14 @@ import { AnimatePresence } from 'framer-motion';
 function ListView() {
   const [listItems, setListItems] = useState([]);
   const [newItemText, setNewItemText] = useState('');
-  const listName = 'toDoList';
+
+  const camelToText = (camel) => {
+    return camel
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/^./, str => str.toUpperCase());
+  }
+
+  const listName = camelToText('toDoList');
 
   useEffect(() => {
     loadList();
