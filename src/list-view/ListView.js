@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 function ListView() {
   const [listItems, setListItems] = useState([]);
   const [newItemText, setNewItemText] = useState('');
+  const listName = 'toDoList';
 
   const camelToText = (camel) => {
     return camel
@@ -13,7 +14,7 @@ function ListView() {
       .replace(/^./, str => str.toUpperCase());
   }
 
-  const listName = camelToText('toDoList');
+  const displayedListName = camelToText(listName);
 
   useEffect(() => {
     loadList();
@@ -54,7 +55,7 @@ function ListView() {
     <ListContainer initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <h2>Listy</h2>
 
-      <h4>{listName}</h4>
+      <h4>{displayedListName}</h4>
 
       <AddItem>
         <input
