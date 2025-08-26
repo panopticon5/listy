@@ -1,4 +1,4 @@
-# Listy App
+# Listy
 
 This is a basic shared list application built with React, demonstrating CRUD operations, responsiveness, and Web API usage.
 
@@ -15,8 +15,3 @@ This is a basic shared list application built with React, demonstrating CRUD ope
 1.  Clone the repository.
 2.  Run `npm install`.
 3.  Run `npm start`.
-
-## Author
-
-Marco Bellio
-
