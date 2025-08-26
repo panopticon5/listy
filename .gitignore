@@ -2,16 +2,13 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
+package-lock.json
 
 # production
 /build
 
 # misc
+/.idea
 .DS_Store
 .env.local
 .env.development.local
